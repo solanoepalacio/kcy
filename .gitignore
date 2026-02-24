@@ -1,2 +1,5 @@
 .claude
 .venv
+client_secrets.json
+token.json
+client_secret*
