@@ -1,0 +1,4 @@
+# YouTube history cleanup dependencies
+# Install with: pip install -r requirements.txt
+google-api-python-client==2.130.0
+requests==2.32.3
