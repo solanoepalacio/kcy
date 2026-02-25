@@ -12,7 +12,7 @@ SETUP (one-time, before first run):
        APIs & Services → Library → search "YouTube Data API v3" → Enable
   4. Create OAuth 2.0 credentials:
        APIs & Services → Credentials → Create Credentials → OAuth client ID
-       Application type: Desktop app
+       Application type: TV and Limited Input devices
        Download the JSON file and save it as client_secrets.json
        in the same directory as this script
   5. Configure the OAuth consent screen if prompted:
@@ -31,7 +31,7 @@ import requests
 
 TOKEN_FILE = "token.json"
 CLIENT_SECRETS_FILE = "client_secrets.json"
-SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
+SCOPES = ["https://www.googleapis.com/auth/youtube"]
 DEVICE_CODE_URL = "https://oauth2.googleapis.com/device/code"
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 GRANT_TYPE = "urn:ietf:params:oauth:grant-type:device_code"
@@ -65,7 +65,14 @@ def main():
         "client_id": client_id,
         "scope": " ".join(SCOPES),
     })
-    resp.raise_for_status()
+    if not resp.ok:
+        error_data = resp.json()
+        print(f"Error: Google rejected the credentials ({resp.status_code}).")
+        print(f"  {error_data.get('error')}: {error_data.get('error_description', '')}")
+        print()
+        print("Make sure client_secrets.json uses an OAuth client of type")
+        print("'TVs and Limited Input devices' (not Desktop app or Web application).")
+        sys.exit(1)
     device_data = resp.json()
 
     verification_url = device_data["verification_url"]

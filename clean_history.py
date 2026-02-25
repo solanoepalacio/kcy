@@ -23,7 +23,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 TOKEN_FILE = "token.json"
-SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
+SCOPES = ["https://www.googleapis.com/auth/youtube"]
 
 
 def parse_since(since_str):

@@ -26,7 +26,7 @@ Detection is based solely on the `madeForKids` flag — the same flag YouTube us
    - APIs & Services → Library → search "YouTube Data API v3" → Enable
 4. Create **OAuth 2.0 credentials**:
    - APIs & Services → Credentials → Create Credentials → OAuth client ID
-   - Application type: **Desktop app**
+   - Application type: **TV and Limited Input devices**
    - Download the JSON file and save it as `client_secrets.json` in this directory
 5. If your app is in testing mode, add your Google account as a test user:
    - APIs & Services → OAuth consent screen → Test users
